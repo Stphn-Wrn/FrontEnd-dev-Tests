@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+    <script src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script type="text/javascript" src="https://c.amazon-adsystem.com/aax2/apstag.js"></script>
+    <script type="text/javascript" src="https://static.axept.io/sdk.js" id="axeptio" data-id="666c2a85d05d81f57459c630" async></script>
+
+    <script type="text/javascript">google_adtest="on";</script>
+
+    <style>
+        #loading-image {
+            display: block;
+            width: 100%;
+            height: 300px;
+            background: url('loading.gif') no-repeat center center;
+            background-size: contain;
+        }
+    </style>
+
+    <script>
+        var div_2_sizes = [
+            [970, 250],
+        ];
+
+        var PREBID_TIMEOUT = 1000;
+
+        var pbjs = pbjs || {};
+        pbjs.que = pbjs.que || [];
+
+        var adUnits = [
+            {
+                code: 'div-2',
+                mediaTypes: {
+                    banner: {
+                        sizes: div_2_sizes
+                    }
+                },
+                bids: [{
+                    bidder: 'appnexus',
+                    params: {
+                        placementId: 13144370
+                    }
+                }]
+            }
+        ];
+
+        var slot;
+
+        void 0 === window._axcb && (window._axcb = []);
+        window._axcb.push(function(axeptio) {
+            axeptio.on("cookies:complete", function(choices) {
+                if (choices.advertising) {
+                    // Utilisateur a consenti à la publicité
+                    initAds();
+                } else {
+                    // Utilisateur n'a pas consenti à la publicité
+                    console.log('Publicité non autorisée par Axeptio');
+                }
+            });
+
+            axeptio.resetCookies();
+        });
+
+        function initAds() {
+            pbjs.que.push(function() {
+                pbjs.addAdUnits(adUnits);
+                pbjs.requestBids({
+                    bidsBackHandler: function() {
+                        pbjs.setTargetingForGPTAsync();
+                        googletag.pubads().refresh();
+                    },
+                    timeout: PREBID_TIMEOUT
+                });
+            });
+
+            googletag.cmd.push(function() {
+                slot = googletag.defineSlot('/21871128741/teststack', [[300, 250]], 'div-2')
+                    .addService(googletag.pubads());
+                googletag.pubads().enableAsyncRendering();
+                googletag.enableServices();
+            });
+
+            googletag.cmd.push(function() {
+                googletag.display('div-2');
+            });
+
+            apstag.fetchBids({
+                slots: [{
+                    slotID: 'div-2',
+                    slotName: '/21871128741/teststack',
+                    sizes: [[300, 250]]
+                }]
+            }, function(bids) {
+                googletag.cmd.push(function() {
+                    setTimeout(function() {
+                        console.log('refreshed');
+                        apstag.setDisplayBids();
+                        googletag.pubads().refresh([slot]);
+                        document.getElementById('loading-image').style.display = 'none';
+                        document.getElementById('div-2').style.display = 'block';
+                    }, 8 * 1000);
+                });
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Using AppNexus Publisher Ad Server</h1>
+
+    <h5>Div-2</h5>
+    <div id="loading-image"></div>
+    <div id="div-2" style="display:none;"></div>
+</body>
+
+</html>
