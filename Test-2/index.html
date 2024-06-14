@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
     <script src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <script type="text/javascript" src="https://c.amazon-adsystem.com/aax2/apstag.js"></script>
-    <script type="text/javascript" src="https://static.axept.io/sdk.js" id="axeptio" data-id="666c2a85d05d81f57459c630" async></script>
 
-    <script type="text/javascript">google_adtest="on";</script>
+    <script type="text/javascript">google_adtest = "on";</script>
 
     <style>
         #loading-image {
@@ -49,25 +49,21 @@
         var slot;
 
         void 0 === window._axcb && (window._axcb = []);
-        window._axcb.push(function(axeptio) {
-            axeptio.on("cookies:complete", function(choices) {
-                if (choices.advertising) {
-                    // Utilisateur a consenti à la publicité
+        window._axcb.push(function (axeptio) {
+            axeptio.on("cookies:complete", function (choices) {
+                if (choices.$$googleConsentMode.ad_personalization === 'granted') {
                     initAds();
                 } else {
-                    // Utilisateur n'a pas consenti à la publicité
                     console.log('Publicité non autorisée par Axeptio');
                 }
             });
-
-            axeptio.resetCookies();
         });
 
         function initAds() {
-            pbjs.que.push(function() {
+            pbjs.que.push(function () {
                 pbjs.addAdUnits(adUnits);
                 pbjs.requestBids({
-                    bidsBackHandler: function() {
+                    bidsBackHandler: function () {
                         pbjs.setTargetingForGPTAsync();
                         googletag.pubads().refresh();
                     },
@@ -75,32 +71,35 @@
                 });
             });
 
-            googletag.cmd.push(function() {
+            googletag.cmd.push(function () {
                 slot = googletag.defineSlot('/21871128741/teststack', [[300, 250]], 'div-2')
                     .addService(googletag.pubads());
                 googletag.pubads().enableAsyncRendering();
                 googletag.enableServices();
             });
 
-            googletag.cmd.push(function() {
+            googletag.cmd.push(function () {
                 googletag.display('div-2');
             });
 
-            apstag.fetchBids({
+            apstag.fetchBids({ // TODO -> Update this problem to refresh
                 slots: [{
                     slotID: 'div-2',
                     slotName: '/21871128741/teststack',
                     sizes: [[300, 250]]
                 }]
-            }, function(bids) {
-                googletag.cmd.push(function() {
-                    setTimeout(function() {
+            }, function (bids) {
+                googletag.cmd.push(function () {
+                    setTimeout(function () {
                         console.log('refreshed');
-                        apstag.setDisplayBids();
+                        apstag.setDisplayBids({
+                            adServer: 'googletag',
+                            bids: bids
+                        });
                         googletag.pubads().refresh([slot]);
                         document.getElementById('loading-image').style.display = 'none';
                         document.getElementById('div-2').style.display = 'block';
-                    }, 8 * 1000);
+                    }, 8000); // 8 * 1000 ms
                 });
             });
         }
@@ -114,5 +113,27 @@
     <div id="loading-image"></div>
     <div id="div-2" style="display:none;"></div>
 </body>
+
+<script>
+    window.axeptioSettings = {
+        clientId: "666c2a85d05d81f57459c630",
+        cookiesVersion: "test-tech-fr-EU",
+        googleConsentMode: {
+            default: {
+                analytics_storage: "denied",
+                ad_storage: "denied",
+                ad_user_data: "denied",
+                ad_personalization: "denied",
+                wait_for_update: 500
+            }
+        }
+    };
+
+    (function (d, s) {
+        var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+        e.async = true; e.src = "//static.axept.io/sdk.js";
+        t.parentNode.insertBefore(e, t);
+    })(document, "script");
+</script>
 
 </html>
