@@ -1,6 +1,6 @@
 const prebidConfig = {
     init: function () {
-        setupPrebid();
+        this.setupPrebid();
     },
     setupPrebid() {
         const div_2_sizes = [

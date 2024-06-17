@@ -2,7 +2,7 @@ let slot;
 
 const apstagConfig = {
     init: function () {
-        setupApstag();
+        this.setupApstag();
 
     },
     setupApstag() {

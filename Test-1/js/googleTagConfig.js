@@ -1,6 +1,6 @@
 const googleTagConfig = {
     init: function () {
-        setupGoogleTag();
+        this.setupGoogleTag();
     },
     setupGoogleTag() {
         const googletag = window.googletag || { cmd: [] };
