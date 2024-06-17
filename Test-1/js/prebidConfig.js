@@ -3,21 +3,17 @@ const prebidConfig = {
         this.setupPrebid();
     },
     setupPrebid() {
-        const div_2_sizes = [
-            [970, 250],
-        ];
-    
         const PREBID_TIMEOUT = 1000;
-    
+
         var pbjs = pbjs || {};
         pbjs.que = pbjs.que || [];
-    
+
         const adUnits = [
             {
-                code: 'div-2',
+                code: 'div-1',
                 mediaTypes: {
                     banner: {
-                        sizes: div_2_sizes
+                        sizes: [[1150, 250]]
                     }
                 },
                 bids: [{
@@ -26,9 +22,23 @@ const prebidConfig = {
                         placementId: 13144370
                     }
                 }]
+            },
+            {
+                code: 'div-2',
+                mediaTypes: {
+                    banner: {
+                        sizes: [[300, 250]]
+                    }
+                },
+                bids: [{
+                    bidder: 'appnexus',
+                    params: {
+                        placementId: 13144371
+                    }
+                }]
             }
         ];
-    
+
         pbjs.que.push(function() {
             pbjs.addAdUnits(adUnits);
             pbjs.requestBids({

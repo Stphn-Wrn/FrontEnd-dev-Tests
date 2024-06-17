@@ -13,11 +13,18 @@ const apstagConfig = {
             });
     
             window.apstag.fetchBids({
-                slots: [{
+                slots: [
+                    {
+                        slotID: 'div-1', 
+                        slotName: '21800505/forbes.fr/classements-article-2', 
+                        sizes: [[1150, 250]] 
+                },
+                {
                     slotID: 'div-2',
                     slotName: '/21871128741/teststack',
                     sizes: [[300, 250]]
-                }]
+                },
+           ]
             }, function(bids) {
                 window.googletag.cmd.push(function() {
                     setTimeout(function() {
