@@ -13,7 +13,7 @@ const googleTagConfig = {
             googletag.enableServices();
             googletag.display("div-2");
 
-            window.slot = googletag.defineSlot(`21800505/forbes.fr/classements-article`, [[1150, 250]], 'div-1')
+            googletag.defineSlot(`/5950404/jardiner-malin.fr/fiche-jardinage_1`, [[1150, 250]], 'div-1') // Bidder Server side 
                 .addService(googletag.pubads());
     
             googletag.pubads().enableAsyncRendering();

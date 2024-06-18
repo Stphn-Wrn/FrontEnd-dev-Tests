@@ -16,7 +16,7 @@ const apstagConfig = {
                 slots: [
                     {
                         slotID: 'div-1', 
-                        slotName: '21800505/forbes.fr/classements-article-2', 
+                        slotName: '/5950404/jardiner-malin.fr/fiche-jardinage_1', 
                         sizes: [[1150, 250]] 
                 },
                 {

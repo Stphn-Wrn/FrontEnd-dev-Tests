@@ -5,7 +5,7 @@ const prebidConfig = {
     setupPrebid() {
         const PREBID_TIMEOUT = 1000;
 
-        var pbjs = pbjs || {};
+        var pbjs = pbjs || {}; // ES6 doesn't work, and i don't know why
         pbjs.que = pbjs.que || [];
 
         const adUnits = [
@@ -17,10 +17,10 @@ const prebidConfig = {
                     }
                 },
                 bids: [{
-                    bidder: 'appnexus',
-                    params: {
-                        placementId: 13144370
-                    }
+                    bidder: 'apstag',
+                        params: {
+                            pubId: '02baacae-0cfc-4942-8fc1-8f85c19e7b49', 
+                        }
                 }]
             },
             {

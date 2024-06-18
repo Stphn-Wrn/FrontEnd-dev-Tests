@@ -18,15 +18,10 @@ const apstagConfig = {
             }, function(bids) {
                 console.log('Fetched bids:', bids); 
                 if (Array.isArray(bids)) {
-                    console.log('Bids is an array:', bids);
-                    bids.forEach(bid => {
-                        console.log('Bid:', bid);
-                    });
                     window.googletag.cmd.push(function() {
                         setTimeout(function() {
                             try {
-                                console.log('refreshed');
-                                window.apstag.setDisplayBids({
+                                window.apstag.setDisplayBids({ // I don't have the documentation of Apstag
                                     adServer: 'googletag',
                                     bids: bids
                                 });
