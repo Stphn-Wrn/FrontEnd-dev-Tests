@@ -32,8 +32,6 @@ const apstagConfig = {
                             }
                         }, 8000); // 8 * 1000 ms
                     });
-                } else {
-                    console.error('Invalid bids response:', bids);
                 }
             });
         } else {
