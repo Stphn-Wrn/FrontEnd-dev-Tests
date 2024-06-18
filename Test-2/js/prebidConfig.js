@@ -1,18 +1,17 @@
 const prebidConfig = {
-    init: function () {
-        this.setupPrebid();
-        
+    init: function (choices) {
+        this.setupPrebid(choices);
     },
-    setupPrebid() {
+    setupPrebid(choices) {
         const div_2_sizes = [
             [970, 250],
         ];
-    
+
         const PREBID_TIMEOUT = 1000;
-    
-        var pbjs = pbjs || {};
+
+        window.pbjs = window.pbjs || {};
         pbjs.que = pbjs.que || [];
-    
+
         const adUnits = [
             {
                 code: 'div-2',
@@ -30,9 +29,25 @@ const prebidConfig = {
             }
         ];
 
-        
-
         pbjs.que.push(function() {
+            pbjs.setConfig({
+                consentManagement: {
+                    gdpr: {
+                        cmpApi: 'custom',
+                        timeout: 8000,
+                        allowAuctionWithoutConsent: false,
+                        consentDataProvider: function(callback) {
+                            var consentData = {
+                                gdprApplies: true,
+                                consentString: choices.consentString,
+                                addtlConsent: choices.additionalConsent
+                            };
+                            callback(consentData);
+                        }
+                    }
+                }
+            });
+
             pbjs.addAdUnits(adUnits);
             pbjs.requestBids({
                 bidsBackHandler: function() {

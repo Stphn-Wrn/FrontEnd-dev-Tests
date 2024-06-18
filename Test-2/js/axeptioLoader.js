@@ -5,7 +5,7 @@ const axeptioLoader = {
         window.axeptioSettings = axeptioConfig;
         this.loadAxeptioScript();
     },
-    loadAxeptioScript: function () {
+    loadAxeptioScript () {
         (function (d, s) {
             var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
             e.async = true;

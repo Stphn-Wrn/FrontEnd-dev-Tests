@@ -31,8 +31,7 @@ const apstagConfig = {
                                     bids: bids
                                 });
                                 window.googletag.pubads().refresh([window.slot]);
-                                document.getElementById('loading-image').style.display = 'none';
-                                document.getElementById('div-2').style.display = 'block';
+                                
                             } catch (e) {
                                 console.error('Error in setDisplayBids:', e);
                             }
