@@ -37,7 +37,7 @@ const prebidConfig = {
                         timeout: 8000,
                         allowAuctionWithoutConsent: false,
                         consentDataProvider: function(callback) {
-                            var consentData = {
+                            let consentData = {
                                 gdprApplies: true,
                                 consentString: choices.consentString,
                                 addtlConsent: choices.additionalConsent

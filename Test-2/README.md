@@ -1,11 +1,11 @@
 # FrontEnd dev - Tests
 
-## 1. Instruction for start the project.
+## 1. Instructions to start the project
 
 - To launch the application, simply clone the Github repository from this address: XXX 
 - Once it has been cloned, go to the "Test-1" repository folder and launch the index.html file from a local web server or from a hosting service. 
 
-## 2. Instructions for configuring CMP - Axeptio (axeptioConfig.js)
+## 2. Instructions to configure CMP - Axeptio (axeptioConfig.js)
 
 - First, you need to go to https://www.axept.io/fr/ and click on "Sign up free" to create an account. 
 - Once your account has been created, you can access your dashboard. You create a new project, you are asked the url of your website and what you want to call your new project.
@@ -36,7 +36,7 @@ window.axeptioSettings = {
 };
  
 (function(d, s) {
-  var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+  let t = d.getElementsByTagName(s)[0], e = d.createElement(s);
   e.async = true; e.src = "//static.axept.io/sdk.js";
   t.parentNode.insertBefore(e, t);
 })(document, "script");
@@ -56,7 +56,7 @@ const axeptioLoader = {
     },
     loadAxeptioScript () {
         (function (d, s) {
-            var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+            let t = d.getElementsByTagName(s)[0], e = d.createElement(s);
             e.async = true;
             e.src = "//static.axept.io/sdk.js";
             t.parentNode.insertBefore(e, t);
@@ -142,6 +142,8 @@ const app = {
 
 document.addEventListener("DOMContentLoaded", app.init); // When the DOM is fully loaded we start the app.init method
 ```
+
+## What I thought of this part of the test
 
 Pros : 
 - I'd already done a bit of work with Axeptio during my work-study placement. 

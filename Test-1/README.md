@@ -1,11 +1,11 @@
 # FrontEnd dev - Tests
 
-## 1. Instruction for start the project.
+## 1. Instructions to start the project
 
 - To launch the application, simply clone the Github repository from this address: XXX 
 - Once it has been cloned, go to the "Test-1" repository folder and launch the index.html file from a local web server or from a hosting service. 
 
-## 2. Instructions for configuring prebid.js (prebidConfig.js)
+## 2. Instructions to configure prebid.js (prebidConfig.js)
 
 - To configure prebid for this test, we start by defining the "advertising units":
 
@@ -43,7 +43,7 @@ const adUnits = [
 ];
 ```
 
-## 3. Instructions for configuring Amazon TAM (apstagConfig.js)
+## 3. Instructions to configure Amazon TAM (apstagConfig.js)
 
 ```js
                 window.apstag.init({ // Initializes the Amazon Publisher Services (Apstag) configuration.
