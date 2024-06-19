@@ -2,7 +2,7 @@
 
 ## 1. Instructions to start the project
 
-- To launch the application, simply clone the Github repository from this address: XXX 
+- To launch the application, simply clone the Github repository from this [address](https://github.com/Stphn-Wrn/FrontEnd-dev-Tests) 
 - Once it has been cloned, go to the "Test-1" repository folder and launch the index.html file from a local web server or from a hosting service. 
 
 ## 2. Instructions to configure prebid.js (prebidConfig.js)
